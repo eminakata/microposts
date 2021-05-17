@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @micropost = Micropost.where(params[:id]).page(params[:page])
+    @micropost = @user.microposts.order(id: :desc).page(params[:page])
     counts(@user)
   end
 
